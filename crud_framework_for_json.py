@@ -4,6 +4,7 @@ fields_file = 'Fields_file.cfg'
 updatable_fields_file = 'updatable_fields.cfg'
 record = 'Record'
 file_not_found = 'File may not exist or Error opening file.'
+record_not_found = 'Record not found.'
 
 data = {}
 
@@ -39,7 +40,7 @@ try:
 		updatable_field = f_updatables.read()
 	f_updatables.close()
 except Exception:
-	print("Record not found")
+	print(record_not_found)
 updatable_fields = eval(updatable_field)
 
 def get_count_of_fields():
@@ -120,7 +121,7 @@ def update_record():
 			print("Record updated successfully.")
 			break
 	if is_record_found == False:
-		print("record not found.")
+		print(record_not_found)
 
 def delete_record():
 	user_input_id = input("Enter " + field_names[0] + ' to find: ')
@@ -132,7 +133,8 @@ def delete_record():
 			save_record()
 			print("Record Deleted successfully.")
 			break
-	verify_and_show_record_not_found(is_record_found)
+	if is_record_found == False:
+		print(record_not_found)
 
 def save_record():
 	with open(data_file, 'w') as data_fie_obj:
