@@ -60,7 +60,7 @@ def get_max_length_of_field_names():
 
 max_length_of_field_names = get_max_length_of_field_names()
 
-def save_record():
+def create_record():
 	field_values = {}
 	field_values['Status'] = 'True'
 	for field_name in field_names:
@@ -169,14 +169,14 @@ def print_pipe():
 		pipe = "-" * (max_length_of_field_names + 6)
 		print( pipe + "+", end = "")
 
-functions = [save_record, display_records, search_record, update_record, delete_record]
+functions = [create_record, display_records, search_record, update_record, delete_record]
 while True:
 	print(menu)
 	try:
 		user_option = int(input("Choose your option: "))
 	except Exception:
 		print("INVALID INPUT.")
-		break
+		continue
 	if user_option == 6:
 		exit_option = input("Do you really want to exit? \nPress 'Y' to Exit or 'N' to Continue: ")
 		if exit_option.lower() == 'y':
